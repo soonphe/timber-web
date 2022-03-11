@@ -1,5 +1,5 @@
 <template>
-  <a href="https://github.com/soonphe/tuyue-web" target="_blank" class="github-corner" aria-label="View source on Github">
+  <a href="https://github.com/soonphe/timber-web" target="_blank" class="github-corner" aria-label="View source on Github">
     <svg
       width="80"
       height="80"
