@@ -8,18 +8,16 @@ import stats from './stats'
 
 const mocks = [
   ...user,
-  ...table,
   ...advert,
   ...ywzt,
   ...stats
 ]
 
-// for front mock
-// please use it cautiously, it will redefine XMLHttpRequest,
-// which will cause many of your third-party libraries to be invalidated(like progress event).
+// 用于前端模拟
+// 请谨慎使用，它会重新定义 XMLHttpRequest，
+// 这将导致您的许多第三方库失效（如进度事件）。
 export function mockXHR() {
   // mock patch
-  // https://github.com/nuysoft/Mock/issues/300
   Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send
   Mock.XHR.prototype.send = function() {
     if (this.custom.xhr) {
@@ -32,6 +30,9 @@ export function mockXHR() {
     this.proxy_send(...arguments)
   }
 
+  /**
+   * 请求体封装
+   */
   function XHR2ExpressReqWrap(respond) {
     return function(options) {
       let result = null
@@ -50,6 +51,9 @@ export function mockXHR() {
     }
   }
 
+  /**
+   * 遍历匹配请求，根据匹配到的数据模板生成数据
+   */
   for (const i of mocks) {
     Mock.mock(new RegExp(i.url), i.type || 'get', XHR2ExpressReqWrap(i.response))
   }

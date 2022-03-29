@@ -31,8 +31,8 @@ import * as filters from './filters' // global filters
 Vue.config.productionTip = false
 
 import { mockXHR } from '../mock'
-if (process.env.NODE_ENV === 'development') {
-  // 开发环境mock——这里的mock也会发送http请求，但是请求被拦截
+// 开发环境/生产环境 mock——这里的mock也会发送http请求，但是请求被拦截
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
   mockXHR()
 }
 

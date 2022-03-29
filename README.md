@@ -8,7 +8,7 @@
 
 ### 设备支持（Equipment support）
 设备支持：web管理后台、android（平板和phone）、ios
-- web管理后台：[timber-vue](http://github.com/soonphe/timber-web)
+- web管理后台：[timber-web](http://github.com/soonphe/timber-web)
 - android端：[timber-android](http://github.com/soonphe/timber-android)
 - ios端：[timber-ios](http://github.com/soonphe/timber-ios)
 
