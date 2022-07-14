@@ -3,13 +3,13 @@ import { param2Obj } from '../src/utils'
 
 import user from './user'
 import advert from './advert'
-import ywzt from './ywzt'
+import ywzt from './menu'
 import stats from './stats'
 
 const mocks = [
   ...user,
   ...advert,
-  ...ywzt,
+  ...menu,
   ...stats
 ]
 

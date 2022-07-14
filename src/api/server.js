@@ -9,7 +9,7 @@ export const upload = params => api.postjson('/common/upload', params)
 /**
  * mock
  */
-export const indexGetList = params => api.get('/ywzt/list', params)
+export const indexGetList = params => api.get('/menu/list', params)
 export const indexCommonGetList = params => api.get('/common-component/list', params)
 export const tableList = params => api.get('/table/list', params)
 
