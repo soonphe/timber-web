@@ -79,7 +79,8 @@ module.exports = {
     name: name,
     resolve: {
       alias: {
-        '@': resolve('src')
+        '@': path.resolve('src')
+        // '@': resolve('src')
       }
     }
   },

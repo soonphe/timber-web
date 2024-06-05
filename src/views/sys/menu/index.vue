@@ -79,6 +79,7 @@
 
 <script>
 import { sysMenuGetMenuListByRoleId, sysMenuDelete } from '@/api/server'
+import { setStore, getStore, rasPublic } from '@/utils/local'
 import waves from '@/directive/waves'
 import { pageSize } from '@/utils/global'
 
@@ -106,7 +107,7 @@ export default {
         pageNum: 1,
         pageSize: pageSize,
         parentId: -1,
-        roleId: -1
+        roleId: getStore('roleId')
       },
       typeList: []
     }

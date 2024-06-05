@@ -158,7 +158,7 @@ export default {
           this.loading = true
           const username = this.loginForm.username
           const password = this.loginForm.password
-          // md5加密密码
+          // 加载公钥，公钥加密密码，简单的可以使用md5或SSH加密，还可以放到后台加密
           // let jse = new this.$jsEncrypt.JSEncrypt()
           // jse.setPublicKey(rasPublic)
           // let pwd = self.ruleForm.password
@@ -173,27 +173,27 @@ export default {
           login({ username, password })
             .then(res => {
               // 保存基础信息到localstorage
-              setStore('username', username)
+              setStore('userInfo', res.data)
               setStore('token', res.data.token)
               if (this.remember) {
                 setStore('password', password)
                 setStore('remember', this.remember)
               }
-              setStore('uid', res.data.id)
-              setStore('roleId', res.data.roleId)
               this.saveLogin(res.data)
               const roleId = res.data.roleId
-              // 获取固定菜单配置
-              console.log(menuItems)
+              // 本地json固定菜单配置
+              // console.log('default menu:{}', menuItems)
               // setStore('menu', menuItems)
               // this.saveMenus(menuItems)
-              // 根据角色ID获取动态菜单
+              // 根据角色ID获取动态菜单（1.网络请求 2.mock方式 3.本地json）
               sysMenuGetMenuListByRoleId({ roleId })
                 .then(res => {
                   const arr = res.data
                   // localStorage中保存用户菜单
                   setStore('menu', arr)
                   this.saveMenus(arr)
+                }).catch(err => {
+                  console.log(err)
                 })
               this.loading = false
               this.$router.push({ path: '/dashboard' })

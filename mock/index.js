@@ -3,14 +3,16 @@ import { param2Obj } from '../src/utils'
 
 import user from './user'
 import advert from './advert'
-import ywzt from './menu'
+import menu from './menu'
 import stats from './stats'
+import module from './module'
 
 const mocks = [
   ...user,
   ...advert,
   ...menu,
-  ...stats
+  ...stats,
+  ...module
 ]
 
 // 用于前端模拟

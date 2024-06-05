@@ -107,6 +107,11 @@ export function param(json) {
   })).join('&')
 }
 
+/**
+ * 获取url参数
+ * @param url ?a=111&b=222
+ * @returns {{}|any}  {"a":"111","b":"222"}
+ */
 export function param2Obj(url) {
   const search = url.split('?')[1]
   if (!search) {

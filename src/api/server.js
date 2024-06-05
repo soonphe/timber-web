@@ -9,10 +9,8 @@ export const upload = params => api.postjson('/common/upload', params)
 /**
  * mock
  */
-export const indexGetList = params => api.get('/menu/list', params)
+export const indexGetList = params => api.get('/menu/list?a=111&b=222', params)
 export const indexCommonGetList = params => api.get('/common-component/list', params)
-export const tableList = params => api.get('/table/list', params)
-
 /* ----------------------------------- sys ------------------------------------- */
 /**
  * 用户
@@ -38,6 +36,32 @@ export const sysMenuGetList = params => api.get('/sysMenu/getList', params)
 export const sysMenuAdd = params => api.postjson('/sysMenu/add', params)
 export const sysMenuDelete = params => api.get('/sysMenu/delete', params)
 export const sysMenuUpdate = params => api.post('/sysMenu/update', params)
+
+// /**
+//  * 用户
+//  */
+// export const login = params => api.post('/sys-user/login', params)
+// export const logout = params => api.get('/sys-user/logout', params)
+// export const sysUserGetList = params => api.postjson('/sys-user/getSysUserList', params)
+// export const sysUserAdd = (data, params) => api.postjson('/sys-user/addSysUser', data, params)
+// export const sysUserDelete = params => api.get('/sys-user/deleteUser', params)
+// export const sysUserUpdate = data => api.post('/sys-user/addSysUser', data)
+// export const sysUserUpdatePassword = data => api.post('/sys-user/updatePassword', data)
+// /**
+//  * 角色
+//  */
+// export const sysRoleGetList = params => api.postjson('/sys-user/getRoleList', params)
+// export const sysRoleAdd = (data, params) => api.postjson('/sys-user/addRole', data, params)
+// export const sysRoleDelete = params => api.get('/sys-user/deleteRole', params)
+// export const sysRoleUpdate = (data, params) => api.postjson('/sys-user/updateRole', data, params)
+// /**
+//  * 模块
+//  */
+// export const sysMenuGetMenuListByRoleId = params => api.get('/sys-user/getMenuListByRoleId', params)
+// export const sysMenuGetList = params => api.get('/sys-user/getMenuList', params)
+// export const sysMenuAdd = params => api.postjson('/sys-user/addMenu', params)
+// export const sysMenuDelete = params => api.get('/sys-user/deleteMenu', params)
+// export const sysMenuUpdate = params => api.post('/sys-user/updateMenu', params)
 /**
  * 配置
  */

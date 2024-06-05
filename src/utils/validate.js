@@ -3,6 +3,8 @@
  */
 
 /**
+ * 校验是否为外部引入对象
+ *
  * @param {string} path
  * @returns {Boolean}
  */

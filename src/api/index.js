@@ -2,6 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 import store from '../store'
 import { Message, MessageBox } from 'element-ui'
+import { setStore, getStore, rasPublic } from '@/utils/local'
 
 const http = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -24,6 +25,7 @@ http.interceptors.request.use(
       req.headers.common['X-Authorization'] = `Bearer ${store.state.Login.user.token}`
       req.headers.common['X-Requester'] = 'pc'
     }
+    req.headers.common['Authorization'] = getStore('token')
     return req
   },
   error => {
@@ -62,6 +64,7 @@ http.interceptors.response.use(
       }
       return Promise.reject(res.message)
     } else {
+      /* res结构：{data: {…}, status: 200, statusText: 'OK', headers: {…}, config: {…},…}  data结构: {code: 20000, data: Array(12)} */
       return res.data // 这里也可以直接返回res
     }
   },
