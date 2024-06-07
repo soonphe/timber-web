@@ -65,7 +65,9 @@ export const sysMenuUpdate = params => api.post('/sysMenu/update', params)
 /**
  * 配置
  */
+export const configAdd = (data, params) => api.postjson('/config/add', data, params)
 export const configGetList = (data, params) => api.postjson('/config/getList', data, params)
+export const configDelete = (data, params) => api.postjson('/config/delete', data, params)
 
 /* ----------------------------------- biz ------------------------------------- */
 /**
@@ -102,6 +104,7 @@ export const videoGetList = (data, params) => api.postjson('/video/getList', dat
 export const videoAdd = params => api.postjson('/video/add', params)
 export const videoDelete = params => api.get('/video/delete', params)
 export const videoUpdate = params => api.postjson('/video/update', params)
+export const videoTypeGetList = params => api.get('/video/videoTypeGetList', params)
 /**
  * 书吧
  */
@@ -109,6 +112,7 @@ export const bookGetList = (data, params) => api.postjson('/book/getList', data,
 export const bookAdd = params => api.postjson('/book/add', params)
 export const bookDelete = params => api.get('/book/delete', params)
 export const bookUpdate = params => api.postjson('/book/update', params)
+export const bookTypeGetList = params => api.get('/book/bookTypeGetList', params)
 /**
  * 音乐
  */
@@ -123,6 +127,7 @@ export const gameGetList = (data, params) => api.postjson('/game/getList', data,
 export const gameAdd = params => api.postjson('/game/add', params)
 export const gameDelete = params => api.get('/game/delete', params)
 export const gameUpdate = params => api.postjson('/game/update', params)
+export const gameTypeGetList = params => api.get('/game/gameTypeGetList', params)
 /**
  * 餐饮
  */
@@ -130,6 +135,7 @@ export const foodGetList = (data, params) => api.postjson('/food/getList', data,
 export const foodAdd = params => api.postjson('/food/add', params)
 export const foodDelete = params => api.get('/food/delete', params)
 export const foodUpdate = params => api.postjson('/food/update', params)
+export const foodTypeGetList = params => api.get('/food/foodTypeGetList', params)
 /**
  * 城市
  */
@@ -163,6 +169,7 @@ export const articleGetList = (data, params) => api.postjson('/article/getList',
 export const articleAdd = params => api.postjson('/article/add', params)
 export const articleDelete = params => api.get('/article/delete', params)
 export const articleUpdate = params => api.postjson('/article/update', params)
+export const articleTypeGetList = params => api.get('/cityArticle/articleTypeGetList', params)
 /**
  * 分类管理
  */
@@ -177,3 +184,7 @@ export const typeUpdate = params => api.postjson('/type/update', params)
  */
 export const statsGetClick = params => api.get('/stats/getClick', params)
 export const statsGetStay = params => api.get('/stats/getStay', params)
+// 状态统计
+export const groupGetStateCount = params => api.get('/stats/groupGetStateCount', params)
+export const statsGetUserDistributeStats = params => api.get('/stats/statsGetUserDistributeStats', params)
+export const statsUserGetList = params => api.get('/stats/statsUserGetList', params)

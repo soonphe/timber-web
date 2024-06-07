@@ -23,13 +23,13 @@ export default {
       default: '300px'
     }
   },
-  data () {
+  data() {
     return {
       chart: null,
       list: null
     }
   },
-  mounted () {
+  mounted() {
     // this.initChart()
     this.__resizeHanlder = debounce(() => {
       if (this.chart) {
@@ -38,7 +38,7 @@ export default {
     }, 100)
     window.addEventListener('resize', this.__resizeHanlder)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (!this.chart) {
       return
     }
@@ -46,11 +46,11 @@ export default {
     this.chart.dispose()
     this.chart = null
   },
-  created () {
+  created() {
     this.getList()
   },
   methods: {
-    getList () {
+    getList() {
       groupGetStateCount()
         .then(res => {
           this.list = res.data
@@ -59,7 +59,7 @@ export default {
           }
         })
     },
-    initChart () {
+    initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
 
       this.chart.setOption({

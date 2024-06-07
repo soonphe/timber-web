@@ -47,7 +47,7 @@
 
 <script>
 import { VueEditor, Quill } from 'vue2-editor'
-import { upload, advertiserGetList, smsBaseCreate, advertiserUpdate } from '@/api/server'
+import { upload, configAdd } from '@/api/server'
 import { imageServer, uploadServer } from '@/utils/global'
 import { mapState, mapGetters } from 'vuex'
 
@@ -93,12 +93,6 @@ export default {
   },
   methods: {
     // 这里是网络请求广告商列表
-    getTypeData() {
-      advertiserGetList()
-        .then(res => {
-          // typeList = res.data
-        })
-    },
     beforeAvatarUpload(file) {
       const isJPG = file.type === 'image/jpeg'
       const isLt2M = file.size / 1024 / 1024 < 100
@@ -134,7 +128,7 @@ export default {
         if (valid) {
           this.loading = true
           if (this.form.id) {
-            smsBaseCreate(this.form)
+            configAdd(this.form)
               .then(res => {
                 this.loading = false
                 this.$message.success('更新成功')
@@ -143,7 +137,7 @@ export default {
                 })
               })
           } else {
-            smsBaseCreate(this.form)
+            configAdd(this.form)
               .then(res => {
                 this.loading = false
                 this.$message.success('添加成功')

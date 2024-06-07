@@ -16,7 +16,7 @@
       <el-table-column prop="userCode" label="用户编号" align="center" width="95" />
       <el-table-column prop="userType" label="用户类型" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.userType">
+          <el-tag :type="scope.row.userType.toString()">
             <span v-if="scope.row.userType == 1">普通用户</span>
             <span v-else-if="scope.row.userType == 2">企业成员</span>
             <span v-else-if="scope.row.userType == 3">不记名用户</span>
@@ -35,7 +35,7 @@
       <el-table-column prop="regChannel" label="注册渠道" align="center" />
       <el-table-column prop="status" label="状态" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">
+          <el-tag :type="scope.row.status.toString() | statusFilter">
             <span v-if="scope.row.status == 0">有效</span>
             <span v-else-if="scope.row.status == 1">冻结</span>
             <span v-else-if="scope.row.status == 2">销户</span>
