@@ -166,6 +166,7 @@ export default {
           const code1 = this.check_code
           const code2 = this.loginForm.checkCode
           if (code1.toLowerCase() !== code2.toLowerCase()) {
+            this.loading = false
             this.$message.error('验证码输入错误，请重新输入')
             this.createCode()
             return
@@ -221,6 +222,7 @@ export default {
     draw_check(code) {
       const canvas = document.querySelector('.code')
       const ctx = canvas.getContext('2d')
+      // canvas元素的width和height属性来重置画布大小。这样做会清除画布上的所有内容
       canvas.height = canvas.height
       ctx.font = '94px Arial'
       ctx.fillStyle = this.randomColor(180, 230)

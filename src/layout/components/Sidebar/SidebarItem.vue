@@ -2,7 +2,9 @@
   <div v-if="!item.hidden" class="menu-wrapper">
     <template v-if="!item.subs">
       <!--      <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">-->
-      <el-menu-item :index="basePath.substring(6) + '/index'" :class="{'submenu-title-noDropdown':!isNest}">
+<!--      如果需要嵌套路由，可以使用basePath.substring(6)拼接当前组件路径item.url -->
+<!--      <el-menu-item :index="basePath.substring(6) + '/index'" :class="{'submenu-title-noDropdown':!isNest}">-->
+      <el-menu-item :index="item.url.substring(6) + '/index'" :class="{'submenu-title-noDropdown':!isNest}">
         <i class="sidebar-icon fa" :class="item.icon" />
         <span slot="title">{{ item.name }}</span>
       </el-menu-item>
@@ -10,17 +12,27 @@
     </template>
 
     <template v-else>
-      <el-submenu :index="item.url" popper-append-to-body>
+      <el-submenu ref="subMenu" :index="item.url" popper-append-to-body>
         <template slot="title">
           <i class="sidebar-icon fa" :class="item.icon" />
           <span slot="title">{{ item.name }}</span>
         </template>
-        <template v-for="child in item.subs">
-          <el-menu-item :key="child.id" :index="child.url.substring(6) + '/index'">
-            <i class="sidebar-icon fa" :class="child.icon" />
-            <span slot="title">{{ child.name }}</span>
-          </el-menu-item>
-        </template>
+        <!-- 处理多级子菜单,使用:item="child"递归组件 -->
+        <sidebar-item
+          v-for="child in item.subs"
+          :key="child.id"
+          :is-nest="true"
+          :item="child"
+          :base-path="resolvePath(child.url)"
+          class="nest-menu"
+        />
+<!--处理二级子菜单-->
+<!--        <template v-for="child in item.subs">-->
+<!--          <el-menu-item :key="child.id" :index="child.url.substring(6) + '/index'">-->
+<!--            <i class="sidebar-icon fa" :class="child.icon" />-->
+<!--            <span slot="title">{{ child.name }}</span>-->
+<!--          </el-menu-item>-->
+<!--        </template>-->
       </el-submenu>
     </template>
   </div>
@@ -28,16 +40,16 @@
 
 <script>
 import path from 'path'
-import Item from './Item'
-// import AppLink from './Link'
+import { isExternal } from '@/utils/validate'
+// import Item from './Item'
+import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'
 
 export default {
   name: 'SidebarItem',
-  // components: { Item, AppLink },
+  components: { AppLink },
   mixins: [FixiOSBug],
   props: {
-    // route配置json
     item: {
       type: Object,
       required: true
@@ -56,6 +68,7 @@ export default {
     return {}
   },
   methods: {
+    // 截取路径中的图标
     icons(url) {
       const icon = this.$route.filter(item => {
         if (item.path === url.substring(url.indexOf('/') + 1, url.lastIndexOf('/'))) {
@@ -80,6 +93,18 @@ export default {
       return false
     },
     resolvePath(...paths) {
+      // 判断是否为外部链接
+      if (isExternal(paths)) {
+        return paths
+      }
+      if (isExternal(this.basePath)) {
+        return this.basePath
+      }
+      // 嵌套base-path和当前路径
+      // console.log('sout:' + this.basePath + '++++' + paths)
+      // sout:portal/type++++portal/testMenu
+      // sout:/portal/type/portal/testMenu++++portal/advert
+      // sout:/portal/type/portal/testMenu/portal/advert++++portal/advert
       return path.resolve(this.basePath, ...paths)
     }
   }

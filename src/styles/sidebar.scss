@@ -24,6 +24,8 @@
     }
     .scrollbar-wrapper {
       overflow-x: hidden!important;
+      overflow-y: auto;
+      max-height: 100vh;
       .el-scrollbar__view {
         height: 100%;
       }

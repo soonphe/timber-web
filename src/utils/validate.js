@@ -3,7 +3,7 @@
  */
 
 /**
- * 校验是否为外部引入对象
+ * 校验是否为外部连接
  *
  * @param {string} path
  * @returns {Boolean}

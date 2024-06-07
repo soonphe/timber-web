@@ -64,6 +64,7 @@
 <script>
 import GithubCorner from '@/components/GithubCorner'
 import PanelGroup from './components/PanelGroup'
+// import PanelGroup from './components/PanelGroupWallet'
 // import LineChartPadUser from './components/LineChartPadUser'
 import LineChart from './components/LineChart'
 import RaddarChart from './components/RaddarChart'
