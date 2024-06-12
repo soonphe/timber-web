@@ -2,8 +2,7 @@ import router from './router'
 import store from './store'
 import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css'// Progress 进度条样式
-import {Message} from 'element-ui'
-import {getStore} from '@/utils/local'
+import { getStore } from '@/utils/local'
 
 const whiteList = ['/login'] // 不重定向白名单
 /**
@@ -15,7 +14,7 @@ router.beforeEach((to, from, next) => {
   // 本地token验证
   if (getStore('token')) {
     if (to.path === '/login') {
-      next({path: '/'})
+      next({ path: '/' })
       // if current page is dashboard will not trigger afterEach hook, so manually handle it
       NProgress.done()
     } else {
@@ -44,21 +43,5 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done() // 结束Progress
+  NProgress.done()
 })
-
-// router.beforeEach((to, from, next) => {
-//   // let menus = router.app.$options.store.getters.getItems
-//   // let menus = JSON.parse(getStore('m')) /* 从vuex中取出保存的菜单 */
-//   let menus = getStore('m')
-//   console.log('m', menus)
-//   if (to.path === '/') {
-//     next()
-//   } else {
-//     if (menus.length > 0) {
-//       next()
-//     } else {
-//       next('/')
-//     }
-//   }
-// })

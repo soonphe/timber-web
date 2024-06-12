@@ -60,22 +60,34 @@ timber-web
 ├── mock: mock API模块
     ├── ...js：mock请求API
     ├── index.js：mock API聚合
-├── public:
+├── public: 静态渲染html入口
+    ├── index.html：主页面
+    ├── favicon.ico：图标
+    └── ...：其他静态
+├── src:
     ├── api：真实请求API模块 *
+        ├── api：请求接口封装
+        └── server.js：请求接口列表
     ├── assets：静态文件模块
     ├── components：自定义控件组件 *（大部分组件都在这里编写、复用，如：面包屑，github，左部菜单控件，全屏控件，错误日志。。。）
-    ├── directive：自定义指令模块 *
+    ├── directive：自定义指令模块
     ├── filters：过滤器模块
     ├── icons：图标模块(主要支持svg)
     ├── lang：国际化模块
-    ├── layout：界面基础布局模块
-    ├── router：路由模块*
-    ├── store：vuex模块*
+    ├── layout：界面基础布局模块(上navbar，左sidebar，右app-main)
+    ├── router：路由模块 *
+    ├── store：vuex模块 *
     ├── styles：css模块
-    ├── utils：自定义工具模块（一些小工具，就是怎么方便怎么来）
+    ├── utils：通用工具模块
     ├── vendor：excel操作模块
-    └── views：业务界面模块 *（主要界面都在这里编写）
-├── src: 基础环境模块
+    ├── views：业务界面模块，主要界面都在这里编写 *
+        ├── views1：业务界面1
+        ├── views2：业务界面2
+        └── views...：业务界面...
+    ├── App.vue：主程序入口
+    ├── main.js：程序入口
+    ├── permission.js：权限模块
+    └── settings：系统设置模块
 ├── .env...: 环境变量
 ├── packgae.json: npm依赖配置
 ├── vue.config.js: 项目配置
@@ -84,7 +96,7 @@ timber-web
 备注：标 * 的为重点模块
 ```
 
-### 技术关键词说明
+### 项目说明
 1.Base framework
 + 技术选型：vue
 + 路由管理：router
@@ -107,6 +119,57 @@ timber-web
   + font-awesome(推荐，主要是方便，直接引库就行，缺点数量有限，不过也够用了)，
   + svg（麻烦一点，需要自己找图作图，好处是矢量图标不失真）
 + 换肤：chalk
+
+2. 开发进度
+- mock数据（mock-server去除，使用index.js，mock系统中台、左侧菜单）(已完成)
+- 登录
+  - 界面(保存用户信息，token，menu，userInfo)(已完成)
+- 顶部菜单（展示用户名，退出-清除用户相关信息）（已完成）
+- 左侧菜单
+  - 多层菜单嵌套处理（原先只支持两级，目前可无限嵌套，后端支持无限嵌套，前端也支持）✔️
+  - 静态化（使用静态json返回，或者使用mock返回——mock优先级最高）✔️
+  - 左侧菜单-头部logo✔️
+  - icon图标修复（font-awesomed✔️、svg图标✔️），
+    - font-awesomed组件参考：https://fontawesome.dashgame.com/
+  ```
+  <!-- vue模块图标，三种图标方案 -->
+  //element内置图标，样式较少
+  <i class="el-icon-info"></i>
+
+  //svg矢量图片，需要自己找
+  <svg-icon class-name="search-icon" icon-class="search"/>
+
+  //font-awesome图标，需要引入库
+  <i class="sidebar-icon fa fa-tachometer"></i>
+  ```
+- 网络请求封装✔️
+  - api请求封装✔️
+  - api路径整理✔️
+- router封装✔️
+- store调整
+- 系统管理界面✔️
+- 添加修改功能合并✔️
+  - 使用弹窗✔️
+  - 界面不跳转，改推拉式
+- 文件上传文件模块✔️
+  - nginx配置图片服务器（http://localhost:80/）
+  - 使用minio代替图片上传✔️
+- conponents组件集成更新（可暂缓）
+- 界面调整，删除无用界面，router，api（已完成）
+- 业务增删查改（已完成）
+- 文章富文本（已使用vue2-editor完成）✔️
+  - https://github.com/surmon-china/vue-quill-editor
+  - https://github.com/davidroyer/vue2-editor
+- 分类管理（表格懒加载）（已完成）
+- 变量格式问题：list: null是错误的，正确的定义 数组 list: []，对象 time: undefined，数组添加this.groupIdAttr.push(item.groupId)
+- 配置管理，获取业务线枚举（已完成）
+- 菜单栏分页，点击加载子菜单（已完成）
+- 广告栏类型分类获取（已完成）
+- 合并ywzt-tools，mock重新编写（已完成）
+- 城市文章调整（已去除）
+- 统计模块使用mock编写（已完成）
+- excel导出（已完成）
+- 统计管理（使用mock，删除table）（已完成）
 
 ## 公众号
 

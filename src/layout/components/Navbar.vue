@@ -18,6 +18,9 @@
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
+          <span class="user-name">{{name}}</span>
+<!--          <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">-->
+<!--          <img class="user-avatar" src="@/assets/icon/title_icon.jpg?imageView2/1/w/80/h/80">-->
           <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
           <i class="el-icon-caret-bottom"></i>
         </div>
@@ -48,7 +51,9 @@ import Hamburger from '@/components/Hamburger'
 // import SizeSelect from '@/components/SizeSelect'
 // import Search from '@/components/HeaderSearch'
 
-import { removeStore } from '@/utils/local' // 验权
+import { getStore, removeStore } from '@/utils/local' // 验权
+import { imageServer } from '@/utils/global'
+
 export default {
   components: {
     Breadcrumb,
@@ -67,8 +72,13 @@ export default {
     ...mapState({
       _sidebar: state => state.app.sidebar
     }),
+    name() {
+      return getStore('userInfo') ? JSON.parse(getStore('userInfo')).name : '暂无'
+    },
     avatar() {
-      return 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
+      // return 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
+      // return '@/assets/icon/title_icon.jpg'
+      return getStore('userInfo') ? imageServer + JSON.parse(getStore('userInfo')).avatar : 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
     },
     sidebar() {
       return this._sidebar
@@ -161,6 +171,14 @@ export default {
         .avatar-wrapper {
           margin-top: 5px;
           position: relative;
+
+          .user-name {
+            color: #97a8be;
+            cursor: text;
+            font-weight: 400 !important;
+            font-size: 16px;
+            line-height: 50px;
+          }
 
           .user-avatar {
             cursor: pointer;

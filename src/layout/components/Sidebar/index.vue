@@ -23,8 +23,8 @@
           <span slot="title">首页</span>
 <!--          方案二：使用svg组件  -->
 <!--          <svg-icon class-name="search-icon" icon-class="search"/>-->
+<!--          方案三：使用font-awesome图标库，main中引入font-awesome  -->
 <!--          <i class="sidebar-icon fa fa-tachometer" />-->
-<!--          方案三：使用font-awesome图标库，引入font-awesome  -->
         </el-menu-item>
       </template>
 <!--      base-path="" 可以解决路由嵌套问题，父组件传入基础路径，子组件组装，如果已集成完整路径则不需要-->
