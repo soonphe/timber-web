@@ -223,4 +223,4 @@ timber-web
 
 加微信群交流，公众号后台回复「**加群**」即可。
 
-![公众号图片](static/common/luoxiaosheng_wechat_common.jpg)
+![公众号图片](document/static/common/luoxiaosheng_wechat_common.jpg)
